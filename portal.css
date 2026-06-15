@@ -1,0 +1,133 @@
+:root {
+    --restaurant-color: #c0392b;
+    --barber-color: #2c3e50;
+    --gold-accent: #d4af37;
+    --white: #ffffff;
+    --transition-speed: 0.6s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    background: #000;
+}
+
+.portal-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.portal-side {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: flex var(--transition-speed) ease-in-out;
+    cursor: pointer;
+}
+
+.portal-side:hover {
+    flex: 1.5;
+}
+
+/* Background Images */
+.restaurant {
+    background: url('assets/restaurant/hero.png') center/cover no-repeat;
+}
+
+.barber {
+    background: url('assets/barber/hero.png') center/cover no-repeat;
+}
+
+.side-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: background var(--transition-speed);
+}
+
+.portal-side:hover .side-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.side-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--white);
+    transform: translateY(0);
+    transition: transform var(--transition-speed);
+}
+
+.side-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.side-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.portal-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: var(--white);
+    border: 1px solid var(--white);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    background: transparent;
+    transition: all 0.3s;
+}
+
+.btn-restaurant:hover {
+    background: var(--restaurant-color);
+    border-color: var(--restaurant-color);
+    transform: scale(1.05);
+}
+
+.btn-barber:hover {
+    background: var(--barber-color);
+    border-color: var(--barber-color);
+    transform: scale(1.05);
+}
+
+/* Specific styling for the split effect */
+.restaurant::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--gold-accent), transparent);
+    z-index: 5;
+}
+
+@media (max-width: 768px) {
+    .portal-container {
+        flex-direction: column;
+    }
+    .side-title {
+        font-size: 2.5rem;
+    }
+}
